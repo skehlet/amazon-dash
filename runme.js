@@ -35,4 +35,11 @@ function onPress(mac) {
 }
 
 var dash = dash_button(DASH_MACS, WIFI_ITF);
-dash.on('detected', _.throttle(onPress, 2 * 60 * 1000));
+dash.on('detected', _.debounce(
+    onPress,
+    2 * 60 * 1000,
+    {
+        'leading': true,
+        'trailing': false
+    }
+));
